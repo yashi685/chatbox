@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>1-on-1 Chat</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Firebase v8 -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+</head>
+<body>
+  <div id="chat-container">
+    <h2>Private Chat</h2>
+   <input type="text" id="name" placeholder="Your name">
+   <input type="text" id="room" placeholder="Enter room name (e.g., general)">
+   <button onclick="joinRoom()">Join Room</button>
+
+   <div id="chat-box"></div>
+
+   <input type="text" id="message" placeholder="Type a message">
+   <button onclick="sendMessage()">Send</button>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
