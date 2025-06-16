@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chatbox</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="join-form">
+      <input type="text" id="name" placeholder="Your Name" />
+      <input type="text" id="room" placeholder="Room Name" />
+      <button id="join-btn">Join Room</button>
+    </div>
+
+    <div id="chat-box" class="chat-box"></div>
+    <div id="typing-indicator"></div>
+
+    <div class="input-area">
+      <textarea id="message" placeholder="Type a message..."></textarea>
+      <button id="send-btn">Send</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
