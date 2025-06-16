@@ -1,0 +1,193 @@
+/* -------------------------  Global reset  ------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  height: 100%;                       /* allow flex‑height on mobile */
+}
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: #f3f4f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right)
+           env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+/* -------------------------  Main wrapper  ------------------------- */
+.container {
+  /* 💡  MOBILE: take full width, full height minus safe‑area */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 0;                   /* flush edge‑to‑edge on phones */
+  overflow: hidden;
+}
+
+/* -------  Limit width on larger screens (fluid max‑widths)  ------- */
+@media (min-width: 480px) {           /* small tablets */
+  .container {
+    height: 92vh;                     /* keep some breathing room */
+    max-width: 480px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,.08);
+  }
+}
+@media (min-width: 768px) {           /* large tablets / small laptop */
+  .container { max-width: 560px; }
+}
+@media (min-width: 1024px) {          /* desktop */
+  .container { max-width: 640px; }
+}
+@media (min-width: 1440px) {          /* very wide monitors */
+  .container { max-width: 720px; }
+}
+
+/* -------------------------  Join‑room section  ------------------------- */
+.join-form {
+  display: flex;
+  flex-wrap: wrap;                    /* stack on phones */
+  gap: 8px;
+  padding: 14px;
+  background: #f7f9fc;
+  border-bottom: 1px solid #e0e3e7;
+}
+.join-form input,
+.join-form button {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 1rem;
+  border: 1px solid #cbd1d8;
+  border-radius: 8px;
+}
+.join-form input:focus {
+  outline: none;
+  border-color: #1b7bf0;
+}
+.join-form button {
+  background: #1b7bf0;
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background .25s;
+}
+.join-form button:hover { background: #165fc6; }
+
+/* ▶ single‑row form on tablets & up */
+@media (min-width: 480px) {
+  .join-form { flex-wrap: nowrap; }
+  .join-form input { flex: 1 1 auto; }
+  .join-form button { width: auto; }
+}
+
+/* -------------------------  Chat viewport  ------------------------- */
+#chat-box {
+  flex: 1 1 0;                        /* fills remaining height */
+  overflow-y: auto;
+  padding: 12px 14px;
+  background: #fafafa;
+}
+/* smooth scrolling on iOS */
+#chat-box {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* -------------------------  Message bubbles  ------------------------- */
+#chat-box .msg {                      /* generic wrapper */
+  margin: 8px 0;
+  max-width: 80%;
+  word-break: break-word;
+  line-height: 1.4;
+}
+.me       { margin-left: auto; text-align: right; }
+.other    { margin-right: auto; text-align: left; }
+
+.who  { font-weight: 600; font-size: .85rem; }
+.text {
+  display: inline-block;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: #dcf8c6;               /* greenish for me */
+}
+.other .text { background: #e4e6eb; }
+.time {
+  display: block;
+  font-size: .72rem;
+  color: #6b7280;
+  margin-top: 2px;
+}
+
+/* 🗑 delete button (only for .me) */
+.del {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: .9rem;
+  cursor: pointer;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+.del:hover { color: #d33; }
+
+/* -------------------------  Typing indicator  ------------------------- */
+#typing-indicator {
+  padding: 4px 14px;
+  font-size: .85rem;
+  color: #777;
+  display: none;                      /* toggled via JS */
+  background: #fafafa;
+}
+
+/* -------------------------  Input area  ------------------------- */
+.input-area {
+  display: flex;
+  gap: 8px;
+  padding: 12px 14px 16px;
+  border-top: 1px solid #e0e3e7;
+  background: #fff;
+}
+.input-area textarea {
+  flex: 1 1 auto;
+  resize: none;
+  min-height: 38px;
+  max-height: 120px;
+  padding: 10px 12px;
+  font-size: 1rem;
+  border: 1px solid #cbd1d8;
+  border-radius: 8px;
+  line-height: 1.4;
+}
+.input-area textarea:focus {
+  outline: none;
+  border-color: #1b7bf0;
+}
+.input-area button {
+  flex: 0 0 auto;
+  padding: 0 18px;
+  background: #1b7bf0;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background .25s;
+}
+.input-area button:hover { background: #165fc6; }
+
+/* -------------------------  Scrollbar (optional)  ------------------------- */
+@media (min-width: 768px) {
+  #chat-box::-webkit-scrollbar { width: 8px; }
+  #chat-box::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+  }
+}
